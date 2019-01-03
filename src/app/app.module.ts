@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from "@angular/flex-layout";
 
+import { OktaAuthModule } from '@okta/okta-angular';
+
 import { MatToolbarModule,
          MatMenuModule,
          MatIconModule,
@@ -37,6 +39,11 @@ import { CalculatorComponent } from './calculator/calculator.component';
     MatTableModule,
     MatDividerModule,
     AppRoutingModule,
+    OktaAuthModule.initAuth({
+      issuer: 'https://dev-322018.oktapreview.com/oauth2/default',
+      redirectUri: 'http://localhost:4200/implicit/callback',
+      clientId: '0oaipoqa789EAewTL0h7'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

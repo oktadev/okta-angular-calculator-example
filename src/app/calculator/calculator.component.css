@@ -1,0 +1,15 @@
+.display {
+  background-color: #f8f8f8;
+  line-height: 24px;
+  padding: 5px 8px;
+}
+
+.calculator button {
+  margin: 5px;
+  width: 64px;
+}
+
+.calculator button.tall {
+  float: right;
+  height: 82px;
+}

@@ -1,0 +1,35 @@
+<h1 class="h1">Calculator</h1>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" class="products">
+  <mat-card class="mat-elevation-z1 calculator">
+    <p class="display">{{display}}</p>
+    <div>
+      <button mat-raised-button color="warn" (click)="acPressed()">AC</button>
+      <button mat-raised-button color="warn" (click)="cePressed()">CE</button>
+      <button mat-raised-button color="primary" (click)="percentPressed()">%</button>
+      <button mat-raised-button color="primary" (click)="operatorPressed('/')">÷</button>
+    </div>
+    <div>
+      <button mat-raised-button (click)="numberPressed('7')">7</button>
+      <button mat-raised-button (click)="numberPressed('8')">8</button>
+      <button mat-raised-button (click)="numberPressed('9')">9</button>
+      <button mat-raised-button color="primary" (click)="operatorPressed('*')">x</button>
+    </div>
+    <div>
+      <button mat-raised-button (click)="numberPressed('4')">4</button>
+      <button mat-raised-button (click)="numberPressed('5')">5</button>
+      <button mat-raised-button (click)="numberPressed('6')">6</button>
+      <button mat-raised-button color="primary" (click)="operatorPressed('-')">-</button>
+    </div>
+    <div>
+      <button mat-raised-button (click)="numberPressed('1')">1</button>
+      <button mat-raised-button (click)="numberPressed('2')">2</button>
+      <button mat-raised-button (click)="numberPressed('3')">3</button>
+      <button mat-raised-button color="primary" class="tall" (click)="operatorPressed('+')">+</button>
+    </div>
+    <div>
+      <button mat-raised-button (click)="numberPressed('0')">0</button>
+      <button mat-raised-button (click)="numberPressed('.')">.</button>
+      <button mat-raised-button color="primary" (click)="equalPressed()">=</button>
+    </div>
+  </mat-card>
+</div>

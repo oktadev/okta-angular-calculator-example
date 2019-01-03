@@ -20,10 +20,6 @@ export class AppComponent {
       this.oktaAuth.isAuthenticated().then((auth) => {this.isAuthenticated = auth});
     }
 
-    login() {
-      this.oktaAuth.loginRedirect();
-    }
-
     logout() {
       this.oktaAuth.logout('/');
     }

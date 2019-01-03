@@ -19,12 +19,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { CalculatorComponent } from './calculator/calculator.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CalculatorComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,9 +42,9 @@ import { CalculatorComponent } from './calculator/calculator.component';
     MatDividerModule,
     AppRoutingModule,
     OktaAuthModule.initAuth({
-      issuer: 'https://dev-322018.oktapreview.com/oauth2/default',
+      issuer: '{yourOktaDomain}/oauth2/default',
       redirectUri: 'http://localhost:4200/implicit/callback',
-      clientId: '0oaipoqa789EAewTL0h7'
+      clientId: '{yourClientId}'
     })
   ],
   providers: [],

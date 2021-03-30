@@ -47,7 +47,7 @@ Issuer:    https://dev-133337.okta.com/oauth2/default
 Client ID: 0oab8eb55Kb9jdMIr5d6
 ```
 
-**NOTE:** You can also use the Okta Admin Console to create your app. See [Create an Angular App](https://developer.okta.com/docs/guides/sign-into-spa/angular/create-okta-application/) for more information
+**NOTE:** You can also use the Okta Admin Console to create your app. See [Create an Angular App](https://developer.okta.com/docs/guides/sign-into-spa/angular/create-okta-application/) for more information.
 
 Set your `issuer` and copy the `clientId` in to `src/app/app.module.ts`.
 

@@ -1,10 +1,10 @@
 # Secure Login with Angular Example
- 
-This example shows how to build a calculator app with Angular 7, Angular CLI, and Angular Material.
+
+This example shows how to build a calculator app with Angular 11, Angular CLI, and Angular Material.
 
 Please read [Build Secure Login for Your Angular App](https://developer.okta.com/blog/2019/02/12/secure-angular-login) to see how this app was created.
 
-**Prerequisites:** [Node.js](https://nodejs.org/). 
+**Prerequisites:** [Node.js](https://nodejs.org/).
 
 > [Okta](https://developer.okta.com/) has Authentication and User Management APIs that reduce development time with instant-on, scalable user infrastructure. Okta's intuitive API and expert support make it easy for developers to authenticate, manage and secure users and roles in any application.
 
@@ -25,7 +25,7 @@ cd okta-angular-calculator-example
 This will get a copy of the project installed locally. To install all of its dependencies and start each app, follow the instructions below.
 
 Run the app using:
- 
+
 ```bash
 npm install
 npm start
@@ -33,29 +33,38 @@ npm start
 
 ### Create a New OIDC App in Okta
 
-To create a new OIDC app on Okta:
+Before you begin, you'll need a free Okta developer account. Install the [Okta CLI](https://cli.okta.com) and run `okta register` to sign up for a new account. If you already have an account, run `okta login`.
 
-1. Log in to your developer account, navigate to **Applications**, and click on **Add Application**.
-3. Select **Single-Page App** and click **Next**. 
-4. Give the application a name, change all instances of `localhost:8080` to `localhost:4200` and click **Done**.
+Then, run `okta apps create`. Select the default app name, or change it as you see fit. Choose **Single-Page App** and press **Enter**.
 
-Set your `issuer` and copy the `clientId` in to `src/app/app.module.ts`. 
+Change the Redirect URI to `http://localhost:4200/callback` and accept the default Logout Redirect URI of `http://localhost:4200`.
 
-**NOTE:** The value of `{yourOktaDomain}` should be something like `dev-123456.okta.com`. Make sure you don't include `-admin` in the value!
+The Okta CLI will create an OIDC Single-Page App in your Okta Org. It will add the redirect URIs you specified and grant access to the Everyone group. It will also add a trusted origin for `http://localhost:4200`. You will see output like the following when it's finished:
+
+```
+Okta application configuration:
+Issuer:    https://dev-133337.okta.com/oauth2/default
+Client ID: 0oab8eb55Kb9jdMIr5d6
+```
+
+**NOTE:** You can also use the Okta Admin Console to create your app. See [Create an Angular App](https://developer.okta.com/docs/guides/sign-into-spa/angular/create-okta-application/) for more information
+
+Set your `issuer` and copy the `clientId` in to `src/app/app.module.ts`.
 
 ```ts
-OktaAuthModule.initAuth({
+const oktaConfig: OktaAuthOptions = {
   issuer: 'https://{yourOktaDomain}/oauth2/default',
-  redirectUri: 'http://localhost:8080/implicit/callback',
-  clientId: '{clientId}'
-})
+  clientId: '{clientId}',
+  redirectUri: window.location.origin + '/callback'
+};
 ```
 
 ## Links
 
 This example uses the following open source libraries from Okta:
 
-* [Okta Angular SDK](https://github.com/okta/okta-oidc-js/tree/master/packages/okta-angular)
+* [Okta Angular SDK](https://github.com/okta/okta-angular)
+* [Okta Sign-In Widget](https://github.com/okta/okta-signin-widget)
 
 ## Help
 

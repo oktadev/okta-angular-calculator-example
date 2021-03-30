@@ -1,13 +1,13 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import { OktaCallbackComponent, OktaAuthGuard } from '@okta/okta-angular';
+import { Injector, NgModule } from '@angular/core';
+import { Router, RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { LoginComponent } from './login/login.component';
+import { OktaAuthGuard, OktaAuthService, OktaCallbackComponent } from '@okta/okta-angular';
 
-export function onAuthRequired({ oktaAuth, router }) {
+export function onAuthRequired(oktaAuth: OktaAuthService, injector: Injector): void {
+  const router = injector.get(Router);
   router.navigate(['/login']);
 }
 
@@ -19,12 +19,13 @@ const routes: Routes = [
     canActivate: [OktaAuthGuard],
     data: { onAuthRequired }
   },
-  { path: 'login', component: LoginComponent },
-  { path: 'implicit/callback', component: OktaCallbackComponent }
+  { path: 'callback', component: OktaCallbackComponent },
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

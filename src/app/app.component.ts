@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OktaAuthService } from '@okta/okta-angular';
 
 @Component({
@@ -6,21 +6,23 @@ import { OktaAuthService } from '@okta/okta-angular';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'AngularCalculator';
-  isAuthenticated: boolean;
+  isAuthenticated = false;
 
-    constructor (public oktaAuth: OktaAuthService) {
-      this.oktaAuth.$authenticationState.subscribe(
-        (isAuthenticated: boolean)  => this.isAuthenticated = isAuthenticated
-      );
-    }
+  constructor(public oktaAuth: OktaAuthService) {
+    // subscribe to authentication state changes
+    this.oktaAuth.$authenticationState.subscribe(
+      (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
+    );
+  }
 
-    ngOnInit() {
-      this.oktaAuth.isAuthenticated().then((auth) => {this.isAuthenticated = auth});
-    }
+  async ngOnInit(): Promise<void> {
+    // get authentication state for immediate use
+    this.isAuthenticated = await this.oktaAuth.isAuthenticated();
+  }
 
-    logout() {
-      this.oktaAuth.logout('/');
-    }
+  async logout(): Promise<void> {
+    await this.oktaAuth.signOut();
+  }
 }
